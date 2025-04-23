@@ -10,7 +10,6 @@ import entidades.Cliente;
 
 public class ClienteDao {
 
-	// Método para abrir conexão com o banco
 	private Connection getConexao() {
 		String url = "jdbc:mysql://localhost:3306/registroestacionamento";
 		String usuario = "root";
@@ -25,7 +24,7 @@ public class ClienteDao {
 		}
 	}
 
-	// Método para inserir cliente no banco
+	// Funçaõ para cadastrar novo cliente no banco
 	public void cadastrarCliente(Cliente cliente) {
 		String sql = "INSERT INTO cliente (cpf, nome, telefone) VALUES (?, ?, ?)";
 
