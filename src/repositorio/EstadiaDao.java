@@ -26,10 +26,10 @@ public class EstadiaDao {
 	public void registrarEntrada(String placaVeiculo) {
 		String sql = "INSERT INTO estadia (placa_veiculo, entrada) VALUES (?, NOW())";
 
-		try (Connection conn = getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+		try (Connection conn = getConexao(); PreparedStatement pst = conn.prepareStatement(sql)) {
 
-			stmt.setString(1, placaVeiculo);
-			stmt.executeUpdate();
+			pst.setString(1, placaVeiculo);
+			pst.executeUpdate();
 			System.out.println("Entrada registrada para o veículo " + placaVeiculo);
 
 		} catch (SQLException e) {
@@ -51,15 +51,15 @@ public class EstadiaDao {
 				+ "INNER JOIN cliente c ON v.cpf_cliente = c.cpf " + "WHERE e.id = ?";
 
 		try (Connection conn = getConexao();
-				PreparedStatement stmtUpdate = conn.prepareStatement(sqlUpdate);
-				PreparedStatement stmtSelect = conn.prepareStatement(sqlSelect)) {
+				PreparedStatement pstUpdate = conn.prepareStatement(sqlUpdate);
+				PreparedStatement pstSelect = conn.prepareStatement(sqlSelect)) {
 
-			stmtUpdate.setInt(1, idEstadia);
-			int atualizado = stmtUpdate.executeUpdate();
+			pstUpdate.setInt(1, idEstadia);
+			int atualizado = pstUpdate.executeUpdate();
 
 			if (atualizado > 0) {
-				stmtSelect.setInt(1, idEstadia);
-				var rs = stmtSelect.executeQuery();
+				pstSelect.setInt(1, idEstadia);
+				var rs = pstSelect.executeQuery();
 
 				if (rs.next()) {
 					String entrada = rs.getString("entrada");

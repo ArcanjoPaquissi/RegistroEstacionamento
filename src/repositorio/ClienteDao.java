@@ -28,13 +28,13 @@ public class ClienteDao {
 	public void cadastrarCliente(Cliente cliente) {
 		String sql = "INSERT INTO cliente (cpf, nome, telefone) VALUES (?, ?, ?)";
 
-		try (Connection conn = getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+		try (Connection conn = getConexao(); PreparedStatement pst = conn.prepareStatement(sql)) {
 
-			stmt.setString(1, cliente.getCpf());
-			stmt.setString(2, cliente.getNome());
-			stmt.setString(3, cliente.getTelefone());
+			pst.setString(1, cliente.getCpf());
+			pst.setString(2, cliente.getNome());
+			pst.setString(3, cliente.getTelefone());
 
-			stmt.executeUpdate();
+			pst.executeUpdate();
 			System.out.println("Cliente cadastrado com sucesso!");
 
 		} catch (SQLException e) {
@@ -47,8 +47,8 @@ public class ClienteDao {
 		String sql = "SELECT * FROM cliente";
 
 		try (Connection conn = getConexao();
-				PreparedStatement stmt = conn.prepareStatement(sql);
-				ResultSet rs = stmt.executeQuery()) {
+				PreparedStatement pst = conn.prepareStatement(sql);
+				ResultSet rs = pst.executeQuery()) {
 
 			System.out.println("\n=== CLIENTES CADASTRADOS ===");
 			while (rs.next()) {

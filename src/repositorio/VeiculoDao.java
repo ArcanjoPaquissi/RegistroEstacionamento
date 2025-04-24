@@ -10,10 +10,10 @@ import entidades.Veiculo;
 
 public class VeiculoDao {
 
-	// Método para abrir conexão com o banco
+	// Conexão com o Banco
 	private Connection getConexao() {
 		String url = "jdbc:mysql://localhost:3306/registroestacionamento";
-		String usuario = "Poderoso13gg";
+		String usuario = "root";
 		String senha = "Poderoso13gg"; // se quiser, mova isso para um arquivo config externo depois
 
 		try {
@@ -25,7 +25,7 @@ public class VeiculoDao {
 		}
 	}
 
-	// Método para cadastrar um veículo no banco
+	// Função para cadastrar um veículo no banco
 	public void cadastrarVeiculo(Veiculo veiculo) {
 		String sql = "INSERT INTO veiculo (placa, modelo, cor, cpf_cliente) VALUES (?, ?, ?, ?)";
 
@@ -44,7 +44,7 @@ public class VeiculoDao {
 			e.printStackTrace();
 		}
 	}
-
+	// Função para vizualizar os veiculos cadastrados
 	public void listarTodosVeiculos() {
 		String sql = "SELECT * FROM veiculo";
 
