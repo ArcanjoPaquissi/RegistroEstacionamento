@@ -20,6 +20,7 @@ public class EstadiaDao {
 			e.printStackTrace();
 			return null;
 		}
+
 	}
 
 	// Método para registrar a entrada de um veículo

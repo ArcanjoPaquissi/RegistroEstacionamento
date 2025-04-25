@@ -29,7 +29,7 @@ public class Principal {
 			System.out.println("[0] Sair");
 			System.out.print("Escolha uma opção: ");
 			opcao = leia.nextInt();
-			leia.nextLine(); 
+			leia.nextLine();
 
 			switch (opcao) {
 			case 1:
@@ -51,10 +51,12 @@ public class Principal {
 				String modelo = leia.nextLine();
 				System.out.print("Cor: ");
 				String cor = leia.nextLine();
+				System.out.print("Tipo de veículo (C para Carro / M para Moto)");
+				String tipo = leia.nextLine();
 				System.out.print("CPF do Cliente: ");
 				String cpfCliente = leia.nextLine();
 
-				Veiculo veiculo = new Veiculo(placa, modelo, cor, cpfCliente);
+				Veiculo veiculo = new Veiculo(placa, modelo, cor, tipo, cpfCliente);
 				veiculoDao.cadastrarVeiculo(veiculo);
 				break;
 
@@ -70,14 +72,14 @@ public class Principal {
 				leia.nextLine();
 				estadiaDao.registrarSaida(idEstadia); // imprime o relatório dentro
 				break;
-				
+
 			case 5:
-			    clienteDao.listarTodosClientes();
-			    break;
+				clienteDao.listarTodosClientes();
+				break;
 
 			case 6:
-			    veiculoDao.listarTodosVeiculos();
-			    break;
+				veiculoDao.listarTodosVeiculos();
+				break;
 
 			case 0:
 				System.out.println("Encerrando o sistema...");
